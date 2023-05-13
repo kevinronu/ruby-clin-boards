@@ -6,7 +6,7 @@ class List
 
   @@id_count = 0 # rubocop:disable Style/ClassVars
 
-  def initialize(name:, cards: [])
+  def initialize(name:, cards: [], id: nil)
     @id = next_id(id)
     @name = name
     @cards = load_cards(cards)

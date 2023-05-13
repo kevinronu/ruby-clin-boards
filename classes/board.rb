@@ -6,7 +6,7 @@ class Board
 
   @@id_count = 0 # rubocop:disable Style/ClassVars
 
-  def initialize(name:, description:, lists: [])
+  def initialize(name:, description:, lists: [], id: nil)
     @id = next_id(id)
     @name = name
     @description = description

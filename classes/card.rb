@@ -4,7 +4,7 @@ class Card
 
   @@id_count = 0 # rubocop:disable Style/ClassVars
 
-  def initialize(title:, members:, labels:, due_date:)
+  def initialize(title:, members:, labels:, due_date:, id: nil)
     @id = next_id(id)
     @title = title
     @members = members
