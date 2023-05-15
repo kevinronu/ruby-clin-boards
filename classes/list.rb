@@ -16,6 +16,23 @@ class List
     @name = name unless name.empty?
   end
 
+  def add_card(card_data)
+    @cards << Card.new(**card_data)
+  end
+
+  def find_card(card_id)
+    @cards.find { |card| card.id == card_id }
+  end
+
+  def update_card(card_id:, data:)
+    card = find_card(card_id)
+    card.update(**data)
+  end
+
+  def delete_card(card_id)
+    @cards.delete_if { |card| card.id == card_id }
+  end
+
   def to_json(_arg)
     JSON.pretty_generate({
                            id: @id,

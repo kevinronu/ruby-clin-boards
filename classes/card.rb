@@ -20,6 +20,18 @@ class Card
     @due_date = due_date unless due_date.empty?
   end
 
+  def add_item(item_data)
+    @checklist << item_data
+  end
+
+  def toggle_item(index)
+    @checklist[index - 1][:completed] = !@checklist[index - 1][:completed]
+  end
+
+  def delete_item(index)
+    @checklist.delete_at(index - 1)
+  end
+
   def to_json(_arg)
     JSON.pretty_generate({
                            id: @id,

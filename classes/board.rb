@@ -13,13 +13,26 @@ class Board
     @lists = load_lists(lists)
   end
 
+  def update(name:, description:)
+    @name = name unless name.empty?
+    @description = description unless description.empty?
+  end
+
+  def add_list(list_data)
+    @lists << List.new(**list_data)
+  end
+
   def find_list(list_name)
     @lists.find { |list| list.name == list_name }
   end
 
-  def update(name:, description:)
-    @name = name unless name.empty?
-    @description = description unless description.empty?
+  def update_list(list_name:, data:)
+    list = find_list(list_name)
+    list.update(**data)
+  end
+
+  def delete_list(list_name)
+    @lists.delete_if { |list| list.name == list_name }
   end
 
   def to_json(_arg)
