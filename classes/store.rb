@@ -12,8 +12,10 @@ class Store
     @boards = load
   end
 
-  def find_board(id)
-    @boards.find { |board| board.id == id }
+  def update_board(id:, data:)
+    board = find_board(id)
+    board.update(**data)
+    save
   end
 
   def add_board(board_data)
@@ -21,10 +23,8 @@ class Store
     save
   end
 
-  def update_board(id:, data:)
-    board = find_board(id)
-    board.update(**data)
-    save
+  def find_board(id)
+    @boards.find { |board| board.id == id }
   end
 
   def delete_board(id)
