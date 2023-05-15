@@ -35,6 +35,35 @@ class Board
     @lists.delete_if { |list| list.name == list_name }
   end
 
+  def find_card(card_id)
+    found_card = nil
+    @lists.each do |list|
+      found_card = list.cards.find { |card| card.id == card_id }
+      return found_card unless found_card.nil?
+    end
+    found_card
+  end
+
+  def find_list_with_card(card_id)
+    index_list = nil
+    @lists.each_with_index do |list, index|
+      unless list.cards.find { |card| card.id == card_id }.nil?
+        index_list = index
+        break
+      end
+    end
+    @lists[index_list]
+  end
+
+  def update_card(card_id:, card_data:, new_list:, old_list:)
+    card = find_card(card_id)
+    card.update(**card_data)
+    unless old_list == new_list
+      index_card = old_list.cards.index(card)
+      new_list.cards << old_list.cards.delete_at(index_card)
+    end
+  end
+
   def to_json(_arg)
     JSON.pretty_generate({
                            id: @id,

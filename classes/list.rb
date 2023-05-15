@@ -24,10 +24,10 @@ class List
     @cards.find { |card| card.id == card_id }
   end
 
-  def update_card(card_id:, data:)
-    card = find_card(card_id)
-    card.update(**data)
-  end
+  # def update_card(card_id:, data:)
+  #   card = find_card(card_id)
+  #   card.update(**data)
+  # end
 
   def delete_card(card_id)
     @cards.delete_if { |card| card.id == card_id }

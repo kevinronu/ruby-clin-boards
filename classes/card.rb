@@ -4,13 +4,13 @@ class Card
 
   @@id_count = 0 # rubocop:disable Style/ClassVars
 
-  def initialize(title:, members:, labels:, due_date:, id: nil)
+  def initialize(title:, members:, labels:, due_date:, checklist: [], id: nil) # rubocop:disable Metrics/ParameterLists
     @id = next_id(id)
     @title = title
     @members = members
     @labels = labels
     @due_date = due_date
-    @checklist = []
+    @checklist = checklist
   end
 
   def update(title:, members:, labels:, due_date:)

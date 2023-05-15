@@ -23,12 +23,12 @@ class Store
     save
   end
 
-  def find_board(id)
-    @boards.find { |board| board.id == id }
+  def find_board(board_id)
+    @boards.find { |board| board.id == board_id }
   end
 
-  def delete_board(id)
-    @boards.delete_if { |board| board.id == id }
+  def delete_board(board_id)
+    @boards.delete_if { |board| board.id == board_id }
     save
   end
 
