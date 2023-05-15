@@ -21,7 +21,7 @@ class Store
     save
   end
 
-  def update_board(id, data)
+  def update_board(id:, data:)
     board = find_board(id)
     board.update(**data)
     save
