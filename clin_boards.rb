@@ -24,7 +24,7 @@ class ClinBoards
         show_board(id.to_i)
       when "update"
         data = board_form
-        @store.update_board(id.to_i, data)
+        @store.update_board(id: id.to_i,data: data)
       when "delete"
         @store.delete_board(id.to_i)
       when "exit"
@@ -71,16 +71,17 @@ class ClinBoards
       when "update-card"
         list_name = list_select(board_id)
         card_data = card_form
-        old_list = board.find_list_with_card(card_id_or_list_name)
+        old_list = board.find_list_with_card(card_id_or_list_name.to_i)
         new_list = board.find_list(list_name)
-        update_card(card_id: card_id_or_list_name, card_data: card_data, new_list: new_list, old_list: old_list)
+        board.update_card(card_id: card_id_or_list_name.to_i, card_data: card_data, new_list: new_list, old_list: old_list)
       when "delete-card"
-        @store.delete_card(board_id, card_id_or_list_name.to_i)
+        board.find_list_with_card(card_id_or_list_name.to_i).delete_card(card_id_or_list_name.to_i)
       when "back"
         break
       else
         puts "Invalid Option"
       end
+      @store.save
     end
   end
 
@@ -103,6 +104,7 @@ class ClinBoards
       else
         puts "Invalid Option"
       end
+      @store.save
     end
   end
 

@@ -13,11 +13,12 @@ class Card
     @checklist = checklist
   end
 
-  def update(title:, members:, labels:, due_date:)
+  def update(title:, members:, labels:, due_date:, checklist:)
     @title = title unless title.empty?
     @members = members unless members.empty?
     @labels = labels unless labels.empty?
     @due_date = due_date unless due_date.empty?
+    @checklist = checklist unless checklist.empty?
   end
 
   def add_item(item_data)

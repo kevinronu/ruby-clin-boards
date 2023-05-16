@@ -58,14 +58,14 @@ class Store
     end
   end
 
+  def save
+    File.write(@filename, JSON.pretty_generate(@boards))
+  end
+
   private
 
   def load
     boards_data = JSON.parse(File.read(@filename), symbolize_names: true)
     boards_data.map { |board_data| Board.new(**board_data) }
-  end
-
-  def save
-    File.write(@filename, JSON.pretty_generate(@boards))
   end
 end
