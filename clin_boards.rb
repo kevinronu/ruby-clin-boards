@@ -40,31 +40,22 @@ class ClinBoards
 
   private
 
-  def show_board(board_id) # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
+  def show_board(board_id) # rubocop:disable Metrics/CyclomaticComplexity
     board = @store.find_board(board_id)
     loop do
       @store.lists_table(board_id)
       print_list_card_options
       option, card_id_or_list_name = gets.chomp.split(" ", 2)
       case option
-      when "create-list"
-        create_list(board)
-      when "update-list"
-        update_list(board)
-      when "delete-list"
-        board.delete_list(card_id_or_list_name)
-      when "create-card"
-        create_card(board: board, board_id: board_id)
-      when "checklist"
-        show_checklist(board_id: board_id, card_id: card_id_or_list_name)
-      when "update-card"
-        update_card(board: board, board_id: board_id, card_id: card_id_or_list_name.to_i)
-      when "delete-card"
-        board.find_list_with_card(card_id_or_list_name.to_i).delete_card(card_id_or_list_name.to_i)
-      when "back"
-        break
-      else
-        puts "Invalid Option"
+      when "create-list" then create_list(board)
+      when "update-list" then update_list(board)
+      when "delete-list" then board.delete_list(card_id_or_list_name)
+      when "create-card" then create_card(board: board, board_id: board_id)
+      when "checklist" then show_checklist(board_id: board_id, card_id: card_id_or_list_name)
+      when "update-card" then update_card(board: board, board_id: board_id, card_id: card_id_or_list_name.to_i)
+      when "delete-card" then board.find_list_with_card(card_id_or_list_name.to_i).delete_card(card_id_or_list_name.to_i)
+      when "back" then break
+      else puts "Invalid Option"
       end
       @store.save
     end
