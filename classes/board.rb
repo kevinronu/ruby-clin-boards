@@ -58,10 +58,10 @@ class Board
   def update_card(card_id:, card_data:, new_list:, old_list:)
     card = find_card(card_id)
     card.update(**card_data)
-    unless old_list == new_list
-      index_card = old_list.cards.index(card)
-      new_list.cards << old_list.cards.delete_at(index_card)
-    end
+    return if old_list == new_list
+
+    index_card = old_list.cards.index(card)
+    new_list.cards << old_list.cards.delete_at(index_card)
   end
 
   def to_json(_arg)
