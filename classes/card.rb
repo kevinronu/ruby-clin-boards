@@ -45,7 +45,7 @@ class Card
   end
 
   def to_a
-    [@id, @title, @members.join(", "), @labels.join(", "), @due_date, check_items.join("/")]
+    [@id, @title.colorize(:light_green), @members.join(", "), @labels.join(", "), @due_date, check_items.join("/")]
   end
 
   private

@@ -1,6 +1,7 @@
 require_relative "classes/store"
 require_relative "modules/utils"
 require_relative "modules/forms"
+require "colorize"
 
 filename = ARGV.shift
 

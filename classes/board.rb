@@ -78,7 +78,7 @@ class Board
     @lists.each do |list|
       lists_cards << "#{list.name}(#{list.cards.length})"
     end
-    [@id, @name, @description, lists_cards.join(", ")]
+    [@id, @name.colorize(:light_red), @description, lists_cards.join(", ")]
   end
 
   private
