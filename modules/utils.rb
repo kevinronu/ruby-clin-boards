@@ -41,7 +41,7 @@ module Utils
   def print_welcome
     puts "####################################\n" \
          "#      Welcome to CLIn Boards      #\n" \
-         "####################################"
+         "####################################\n\n"
   end
 
   def print_exit
